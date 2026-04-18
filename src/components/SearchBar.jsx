@@ -1,5 +1,5 @@
-// Import necessary components, react, useContext, useStates, and useRef
-import React, { useRef, useState, useContext } from "react";
+// Import necessary components, react, useStates, and useRef
+import React, { useRef, useState } from "react";
 import TaskList from "./TaskList";
 import { TaskContext } from "../context/TaskContext";
 
