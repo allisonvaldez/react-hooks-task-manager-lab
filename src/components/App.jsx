@@ -1,13 +1,12 @@
 // Import necessary components, react, useContext, useStates, useEffect
-import React, { useEffect, useContext, useState } from "react";
+import React from "react";
 import { TaskProvider } from "../context/TaskContext";
-import { TaskContext } from "../context/TaskContext";
 import TaskForm from "./TaskForm";
 import SearchBar from "./SearchBar";
 
 // Create a function that includes everything in TaskProvider for components to be available globally
 function App() {
-  // No need for states or use effects anymore
+  // No need for states or useEffects anymore
   return (
     <TaskProvider>
       <div>

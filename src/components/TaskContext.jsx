@@ -1,8 +1,11 @@
 // Import necessary components, react, useStates, useEffect, and createContext
 import React, { createContext, useState, useEffect } from "react"
 
+// Create context object first so TaskProvider can reference it
+export const TaskContext = createContext();
+
 // Create a function for TaskProvider
-function TaskProvider({ children }) {
+export function TaskProvider({ children }) {
     // Declare tasks initial empty state
     const [tasks, setTasks] = useState([]);
 
@@ -14,7 +17,7 @@ function TaskProvider({ children }) {
             .catch(error => console.error("Error fetching tasks: ", error));
     }, []);
 
-    //  Create a function to POST a new task to the backend
+    // Create a function to POST a new task to the backend
     function addTask(title) {
         fetch("http://localhost:6001/tasks", {
             method: "POST",
@@ -22,32 +25,26 @@ function TaskProvider({ children }) {
             body: JSON.stringify({ title, completed: false })
         })
             .then(response => response.json())
-            .then(newTask => setTask([...tasks, newTask]))
+            .then(newTask => setTasks([...tasks, newTask]))
             .catch(error => console.error("Error adding task: ", error));
     }
 
-    //  Create a function to PATCH a new task to the backend
+    // Create a function to PATCH a task on the backend
     function toggleComplete(task) {
-        fetch("http://localhost:6001/task/${task.id}", {
+        fetch(`http://localhost:6001/tasks/${task.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(completed: !task.completed)
+            body: JSON.stringify({ completed: !task.completed })
         })
             .then(response => response.json())
             .then(updatedTask => setTasks(tasks.map(t => t.id === updatedTask.id ? updatedTask : t)))
             .catch(error => console.error("Error toggling task: ", error));
     }
 
-    // Provide tasks, addTasks, and toggleComplete to all children
+    // Provide tasks, addTask, and toggleComplete to all children
     return (
         <TaskContext.Provider value={{ tasks, addTask, toggleComplete }}>
             {children}
         </TaskContext.Provider>
-    )
+    );
 }
-
-
-
-// Make it globally available
-export const TaskContext = createContext();
-export function TaskProvider();

@@ -2,10 +2,10 @@
 import React, { useRef, useState } from "react";
 import TaskList from "./TaskList";
 
-// Create a function for searchBar 
+// Create a function for searchBar
 function SearchBar() {
   // Declare useRef to track input set initially to null
-  const searchRef = useRef(null)
+  const searchRef = useRef(null);
 
   // useState to track values entered on rerendering on searches
   const [query, setQuery] = useState("");
@@ -21,10 +21,11 @@ function SearchBar() {
       <input
         type="text"
         placeholder="Search tasks..."
+        ref={searchRef}
         value={query}
         onChange={handleSearch}
       />
-      {/* To prevent drilling place task here for filtering*/}
+      {/* To prevent drilling place TaskList here for filtering */}
       <TaskList query={query} />
     </div>
   );

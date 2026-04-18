@@ -4,9 +4,8 @@ import { TaskContext } from "../context/TaskContext";
 
 // Create a function taskList
 function TaskList({ query }) {
-
   // Set tasks and toggleComplete to global context
-  const { tasks, toggleComeplete } = useContext(TaskContext)
+  const { tasks, toggleComplete } = useContext(TaskContext);
 
   // Filter tasks from searchBar input
   const filteredTasks = tasks.filter(task =>
@@ -22,7 +21,7 @@ function TaskList({ query }) {
             {task.title}
           </span>
           {/* data-testid should use taskId to find buttons */}
-          <button data-testid={task.id} onClick={() => toggleComeplete(task)} >
+          <button data-testid={task.id} onClick={() => toggleComplete(task)}>
             {task.completed ? "Undo" : "Complete"}
           </button>
         </li>
