@@ -1,3 +1,4 @@
+// Import necessary components, react, useContext, useStates, and useRef
 import React, { useRef, useState, useContext } from "react";
 import TaskList from "./TaskList";
 import { TaskContext } from "../context/TaskContext";
@@ -18,9 +19,10 @@ function SearchBar() {
         value={query}
         onChange={handleSearch}
       />
-      <TaskList query={query}/>
+      <TaskList query={query} />
     </div>
   );
 }
 
+// Make globally available
 export default SearchBar;
