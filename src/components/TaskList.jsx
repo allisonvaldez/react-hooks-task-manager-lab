@@ -24,5 +24,5 @@ function TaskList({ query }) {
   );
 }
 
-// Make globally available
+// Make it globally available
 export default TaskList;

@@ -23,5 +23,5 @@ function App() {
   );
 }
 
-// Make globally available
+// Make it globally available
 export default App;

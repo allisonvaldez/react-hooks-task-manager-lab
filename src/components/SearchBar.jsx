@@ -24,5 +24,5 @@ function SearchBar() {
   );
 }
 
-// Make globally available
+// Make it globally available
 export default SearchBar;

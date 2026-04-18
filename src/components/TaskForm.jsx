@@ -25,5 +25,5 @@ function TaskForm() {
   );
 }
 
-// Make globally available
+// Make it globally available
 export default TaskForm;
