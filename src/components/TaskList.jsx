@@ -1,9 +1,14 @@
 // Import necessary components, react, useContext, useStates
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
 
+// Create a function taskList
 function TaskList({ query }) {
-  const [tasks, setTasks] = useState([]);
+
+  // Set tasks and toggleComplete to global context
+  const { tasks, toggleComeplete } = useContext(TaskContext)
+
+  // Filter tasks from searchBar input
   const filteredTasks = tasks.filter(task =>
     task.title.toLowerCase().includes(query.toLowerCase())
   );
@@ -12,10 +17,12 @@ function TaskList({ query }) {
     <ul>
       {filteredTasks.map((task) => (
         <li key={task.id}>
+          {/* Line through when task completed */}
           <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>
             {task.title}
           </span>
-          <button data-testid={task.id}>
+          {/* data-testid should use taskId to find buttons */}
+          <button data-testid={task.id} onClick={() => toggleComeplete(task)} >
             {task.completed ? "Undo" : "Complete"}
           </button>
         </li>
